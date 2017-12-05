@@ -32,4 +32,7 @@ class NMerge(object):
         '''
         Constructor
         '''
-        
+    
+    def sort(self, master):
+        pass
+    
