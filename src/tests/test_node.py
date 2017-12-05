@@ -43,10 +43,7 @@ class NodeTest(unittest.TestCase):
         node = Node(3)
         node.randomizeData(5)
         
-        self.assertEqual(len(node.data), 3)
-        self.assertEqual(node.data[0], 5)
-        self.assertEqual(node.data[1], 7)
-        self.assertEqual(node.data[2], 6)
+        self.assertEqual(node.data, [5, 7, 6])
         
     def testSortData(self):
         random.seed(1)
@@ -55,13 +52,8 @@ class NodeTest(unittest.TestCase):
         node.randomizeData(5)
         node.sortData()
         
-        self.assertEqual(len(node.data), 3)
-        self.assertEqual(node.data[0], 5)
-        self.assertEqual(node.data[1], 6)
-        self.assertEqual(node.data[2], 7)
-         
-#     def testNameB(self):
-#         self.assertEqual(0, 1)
+        self.assertEqual(node.data, [5, 6, 7])
+
 
 
 if __name__ == "__main__":

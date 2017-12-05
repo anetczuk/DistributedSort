@@ -38,8 +38,8 @@ class Master(object):
         '''
         
         self.nodeSize = N
-        self.nodes=[Node(N)]*K
-        self.buffer=[0]*K
+        self.nodes = [ Node(N) for _ in range(K) ]
+        self.buffer = [0]*K
         
     def randomizeNodes(self):
         startVal = 0
@@ -48,6 +48,6 @@ class Master(object):
             startVal += self.nodeSize
             
     def printData(self):
-        for i in range(0, len(self.nodes)):
+        for i in range(len(self.nodes)):
             n = self.nodes[i]
             print "Node {}: {}".format(i, n.data)

@@ -42,8 +42,7 @@ class Node(object):
     def randomizeData(self, startValue):
         dataLen = len(self.data)
         randomData = list( range(startValue, startValue+dataLen) )
-        
-        for i in range(0, dataLen):
+        for i in range(dataLen):
             rIndex = int(random.random()*len(randomData))
             self.data[i] = randomData[rIndex]
             randomData.pop(rIndex)

@@ -46,12 +46,8 @@ class MasterTest(unittest.TestCase):
         master.randomizeNodes()
         
         self.assertEqual(len(master.nodes), N)
-        node = master.nodes[1]
-        
-        self.assertEqual(len(node.data), K)
-        self.assertEqual(node.data[0], 3)
-        self.assertEqual(node.data[1], 5)
-        self.assertEqual(node.data[2], 4)
+        self.assertEqual(master.nodes[0].data, [2, 1, 0])
+        self.assertEqual(master.nodes[1].data, [3, 5, 4])
 
 
 if __name__ == "__main__":
