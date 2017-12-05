@@ -26,7 +26,7 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 
-repeats=0
+repeats=1
 untilfailure=0
 
 for i in "$@"; do
@@ -42,14 +42,23 @@ esac
 done
 
 
+
 cd $SCRIPT_DIR
 
+
+if [ $repeats -eq 1 ] && [ $untilfailure -eq 0 ]; then
+    ## no repeating -- just single call
+    python -m unittest discover
+    exit $?
+fi
+
+
+## repeating mode
 counter=0
-while [ $repeats -ge 0 ] || [ $untilfailure -ne 0 ]; do
+while [ $repeats -gt 0 ] || [ $untilfailure -ne 0 ]; do
     let counter=counter+1
     
-    echo -e "\nTests iteration: $counter" 
-    ##python -m main $@
+    echo -e "\n\nTests iteration: $counter" 
     python -m unittest discover
     err_code=$?
     if [ $err_code -ne 0 ]; then
