@@ -21,12 +21,12 @@
 # SOFTWARE.
 #
 
-from dsort import Node
+from dsort.node import Node
 
 
 class Master(object):
     '''
-    Node class
+    Master class
     '''
 
 
@@ -37,5 +37,17 @@ class Master(object):
         N - number of elements in single node
         '''
         
-        self.nodes=[ Node(N) ]*K
+        self.nodeSize = N
+        self.nodes=[Node(N)]*K
+        self.buffer=[0]*K
         
+    def randomizeNodes(self):
+        startVal = 0
+        for n in self.nodes:
+            n.randomizeData(startVal)
+            startVal += self.nodeSize
+            
+    def printData(self):
+        for i in range(0, len(self.nodes)):
+            n = self.nodes[i]
+            print "Node {}: {}".format(i, n.data)

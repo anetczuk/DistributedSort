@@ -22,6 +22,8 @@
 #
 
 import unittest
+import random
+from dsort.master import Master
 
 
 class MasterTest(unittest.TestCase):
@@ -35,11 +37,21 @@ class MasterTest(unittest.TestCase):
         pass
 
 
-#     def testName(self):
-#         self.assertEqual(0, 1)
-#         
-#     def testNameB(self):
-#         self.assertEqual(0, 1)
+    def testRandomizeNodes(self):
+        random.seed(2)
+        
+        N = 2
+        K = 3
+        master = Master(N, K)
+        master.randomizeNodes()
+        
+        self.assertEqual(len(master.nodes), N)
+        node = master.nodes[1]
+        
+        self.assertEqual(len(node.data), K)
+        self.assertEqual(node.data[0], 3)
+        self.assertEqual(node.data[1], 5)
+        self.assertEqual(node.data[2], 4)
 
 
 if __name__ == "__main__":
