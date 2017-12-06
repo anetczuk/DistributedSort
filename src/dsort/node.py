@@ -36,22 +36,36 @@ class Node(object):
         Constructor:
         N - number of elements
         '''
+        self.dataSize = N
         self.data = [0]*N           ## data buffer
         self.buffer = [0]*N         ## input buffer
         
-    def randomizeData(self, startValue):
-        dataLen = len(self.data)
-        randomData = list( range(startValue, startValue+dataLen) )
-        for i in range(dataLen):
-            rIndex = int(random.random()*len(randomData))
-            self.data[i] = randomData[rIndex]
-            randomData.pop(rIndex)
         
+    def randomizeData(self, startValue=0):
+        self.data = random.sample( xrange(startValue, startValue+self.dataSize), self.dataSize)
+        
+        
+    def popFirst(self):
+        self.data.append( self.data[ self.dataSize-1 ] )    ## repeat greatest element
+        return self.data.pop(0)
+    
+    
+    def setLast(self, val):
+        self.data[ self.dataSize-1 ] = val
+    
+    
     def sortData(self):
+        self.orderSort()
+        self.wait()
+
+        
+    def orderSort(self):
         self.data.sort()
+
 
     def wait(self):
         '''
         Wait for node to finish it's current task.
         '''
         pass        ## do nothing, just simulate waiting
+
