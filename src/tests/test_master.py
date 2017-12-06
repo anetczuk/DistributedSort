@@ -40,11 +40,11 @@ class MasterTest(unittest.TestCase):
     def testRandomizeNodes(self):
         random.seed(2)
         
-        N = 2
-        master = Master(N, 3)
+        K = 2
+        master = Master(K, 3)
         master.randomizeNodes()
         
-        self.assertEqual(len(master.nodes), N)
+        self.assertEqual(len(master.nodes), K)
         self.assertEqual(master.nodes[0].data, [5, 4, 0])
         self.assertEqual(master.nodes[1].data, [3, 1, 2])
 

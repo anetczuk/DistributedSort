@@ -52,14 +52,31 @@ class Master(object):
             n.data = randomSlice
             del randomData[:self.nodeSize]
 
+
+    def nodeData(self, nodeIndex, dataIndex):
+        return self.nodes[nodeIndex].getData(dataIndex)
+
+
+    def setNodeBuffer(self, nodeIndex, dataIndex, value):
+        self.nodes[nodeIndex].buffer[dataIndex] = value
+
+
+    def sortNodesParallel(self):
+        ## order parallel sorting in each node
+        for n in self.nodes:
+            n.orderSort()
+        ## wait for nodes to finish sorting operation
+        for n in self.nodes:
+            n.wait()
+
+
+    def sortBuffer(self):
+        self.buffer.sort()
+    
             
     def printData(self):
         for i in range(len(self.nodes)):
             n = self.nodes[i]
             print "Node {}: {}".format(i, n.data)
-
-
-    def sortBuffer(self):
-        self.buffer.sort()
 
     

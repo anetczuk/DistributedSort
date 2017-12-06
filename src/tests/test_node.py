@@ -54,28 +54,6 @@ class NodeTest(unittest.TestCase):
         node.sortData()
         
         self.assertEqual(node.data, [5, 6, 7])
-        
-        
-    def testPopFirst(self):
-        random.seed(1)
-        
-        node = Node(3)
-        node.randomizeData()
-        node.sortData()
-        
-        val = node.popFirst()
-        self.assertEqual(val, 0)
-        self.assertEqual(node.data, [1, 2, 2])
-        
-    def testSetLast(self):
-        random.seed(1)
-        
-        node = Node(3)
-        node.randomizeData()
-        node.sortData()
-        
-        node.setLast(9)
-        self.assertEqual(node.data, [0, 1, 9])
 
 
 

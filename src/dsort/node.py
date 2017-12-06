@@ -44,14 +44,9 @@ class Node(object):
     def randomizeData(self, startValue=0):
         self.data = random.sample( xrange(startValue, startValue+self.dataSize), self.dataSize)
         
-        
-    def popFirst(self):
-        self.data.append( self.data[ self.dataSize-1 ] )    ## repeat greatest element
-        return self.data.pop(0)
     
-    
-    def setLast(self, val):
-        self.data[ self.dataSize-1 ] = val
+    def getData(self, index):
+        return self.data[index]
     
     
     def sortData(self):
