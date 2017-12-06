@@ -48,7 +48,7 @@ cd $SCRIPT_DIR
 
 if [ $repeats -eq 1 ] && [ $untilfailure -eq 0 ]; then
     ## no repeating -- just single call
-    python -m unittest discover
+    python -m unittest discover $@
     exit $?
 fi
 
@@ -59,7 +59,7 @@ while [ $repeats -gt 0 ] || [ $untilfailure -ne 0 ]; do
     let counter=counter+1
     
     echo -e "\n\nTests iteration: $counter" 
-    python -m unittest discover
+    python -m unittest discover $@
     err_code=$?
     if [ $err_code -ne 0 ]; then
         echo "Tests failed: $err_code"
