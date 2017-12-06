@@ -22,6 +22,7 @@
 #
 
 from dsort.node import Node
+import random
 
 
 class Master(object):
@@ -37,17 +38,28 @@ class Master(object):
         N - number of elements in single node
         '''
         
+        self.nodesNum = K
         self.nodeSize = N
-        self.nodes = [ Node(N) for _ in range(K) ]
-        self.buffer = [0]*K
+        self.nodes = [ Node( self.nodeSize ) for _ in range( self.nodesNum ) ]
+        self.buffer = [0]*self.nodesNum
+
         
     def randomizeNodes(self):
-        startVal = 0
+        dataLen = self.nodesNum*self.nodeSize
+        randomData = random.sample( xrange(0, dataLen), dataLen)
         for n in self.nodes:
-            n.randomizeData(startVal)
-            startVal += self.nodeSize
+            randomSlice = randomData[:self.nodeSize]
+            n.data = randomSlice
+            del randomData[:self.nodeSize]
+
             
     def printData(self):
         for i in range(len(self.nodes)):
             n = self.nodes[i]
             print "Node {}: {}".format(i, n.data)
+
+
+    def sortBuffer(self):
+        self.buffer.sort()
+
+    

@@ -41,13 +41,12 @@ class MasterTest(unittest.TestCase):
         random.seed(2)
         
         N = 2
-        K = 3
-        master = Master(N, K)
+        master = Master(N, 3)
         master.randomizeNodes()
         
         self.assertEqual(len(master.nodes), N)
-        self.assertEqual(master.nodes[0].data, [2, 1, 0])
-        self.assertEqual(master.nodes[1].data, [3, 5, 4])
+        self.assertEqual(master.nodes[0].data, [5, 4, 0])
+        self.assertEqual(master.nodes[1].data, [3, 1, 2])
 
 
 if __name__ == "__main__":
