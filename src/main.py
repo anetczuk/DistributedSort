@@ -26,6 +26,8 @@ import sys
 import time
 import argparse 
 import logging
+from dsort.master import Master
+from dsort.nmerge import NMerge
 
 
 
@@ -37,8 +39,10 @@ if __name__ != '__main__':
     sys.exit(0)
 
 
-parser = argparse.ArgumentParser(description='Presentation of sorting in distributed environment')
-parser.add_argument('--algorithm', "-a", action='store', required=False, default="NM", choices=["NM"], help='Algorithm: NMerge' )
+parser = argparse.ArgumentParser(description='Presentation of N-merge sorting algorithm in distributed environment')
+#parser.add_argument('--algorithm', "-a", action='store', required=False, default="NM", choices=["NM"], help='Algorithm: NMerge' )
+parser.add_argument('-N', action='store', required=False, default=5, help='Size of worker' )
+parser.add_argument('-K', action='store', required=False, default=5, help='Number of workers' )
  
  
 args = parser.parse_args()
@@ -47,17 +51,26 @@ args = parser.parse_args()
 logging.basicConfig(level=logging.DEBUG)
 
 
-starttime = time.time()
 
 try:
+    starttime = time.time()
     
-    if   args.algorithm == "NM":
-        print "Starting NM"
-    else:
-        print "Invalid algorithm:", args.algorithm
-        sys.exit(1)
-
-finally:
+    N = int(args.N)
+    K = int(args.K)
+    
+    master = Master(K, N)
+    master.randomizeNodes()
+    
+    print "Before sorting"
+    master.printData()
+    
+    merge = NMerge()
+    merge.sortNaive(master)
+    
+    print "After sorting"
+    master.printData()
+    
     timeDiff = (time.time()-starttime)*1000.0
     print "Calculation time: {:13.8f}ms".format(timeDiff)
-    
+finally:
+    pass

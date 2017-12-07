@@ -24,7 +24,6 @@
 import unittest
 import random
 from dsort.master import Master
-from dsort import nmerge
 from dsort.nmerge import NMerge
 
 

@@ -77,6 +77,6 @@ class Master(object):
     def printData(self):
         for i in range(len(self.nodes)):
             n = self.nodes[i]
-            print "Node {}: {}".format(i, n.data)
+            print "Node {}: {} {}".format(i, n.data, n.buffer)
 
     
