@@ -25,15 +25,12 @@
 
 class NMerge(object):
     '''
-    Master class
+    N-merge implementation.
     '''
-
 
     def __init__(self):
         '''
         Constructor
-        K - number of nodes
-        N - number of elements in single node
         '''
         
         self.master = None
