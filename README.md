@@ -16,10 +16,10 @@ Simple environment for implementing and testing distributed sorting algorithms. 
 
 - Master -- master node containing other nodes
 - Node -- regular node
-- NMerge -- example of n-merge sort algorithm
+- NMerge -- example of k-merge sort algorithm
 
 
-### N-merge sort
+### K-merge sort
 
 The algorithm have following properties:
  - K sortings running in parallel
